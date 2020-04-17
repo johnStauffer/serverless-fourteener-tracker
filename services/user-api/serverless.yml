@@ -1,4 +1,6 @@
-service: notes-app-ext-billing-api
+org: johnstauffer
+app: fourteener-tracker
+service: user-api
 
 plugins:
   - serverless-bundle
