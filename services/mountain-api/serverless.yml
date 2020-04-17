@@ -1,0 +1,24 @@
+org: johnstauffer
+app: fourteener-tracker
+service: mountain-api
+
+plugins:
+  - serverless-bundle
+  - serverless-offline
+
+custom: ${file(../../serverless.common.yml):custom}
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: dev
+  region: us-west-2
+  tracing:
+    lambda: true
+
+environment:
+  stage: ${self:custom.stage}
+  resourcesStage: ${self:custom.resourcesStage}

@@ -43,9 +43,40 @@ jobs:
 workflows:
   build-deploy:
     jobs:
+      # non-master branches deploys to stage named by the branch
       - deploy-service:
-          name: Deploy Users API
+          name: Deploy User API
           service_path: services/user-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
+          filters:
+            branches:
+              ignore: master
 
+      - deploy-service:
+          name: Deploy Mountain API
+          service_path: services/mountain-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+          filters:
+            branches:
+              ignore: master
+
+      # master branch deploys to the 'prod' stage
+      - deploy-service:
+          name: Deploy User API
+          service_path: services/user-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+          filters:
+            branches:
+              only: master
+
+      - deploy-service:
+          name: Deploy Mountain API
+          service_path: services/mountain-api
+          stage_name: ${CIRCLE_BRANCH}
+          context: Development
+          filters:
+            branches:
+              only: master
