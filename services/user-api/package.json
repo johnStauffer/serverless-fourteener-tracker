@@ -1,0 +1,13 @@
+{
+  "name": "user-api",
+  "version": "1.0.0",
+  "description": "user management microservice",
+  "main": "user.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "john.stauffer.d@gmail.com"
+}

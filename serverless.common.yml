@@ -30,3 +30,4 @@ functions:
       - http:
           path: hello
           method: get
+  dev
