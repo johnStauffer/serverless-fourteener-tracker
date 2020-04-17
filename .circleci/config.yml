@@ -32,7 +32,7 @@ jobs:
           name: Deploy application
           command: |
             cd << parameters.service_path >>
-            echo deploying to: $CI_CONTEXT
+            echo deploying to: ${CI_CONTEXT}
             serverless deploy -s << parameters.stage_name >>
 
       - save_cache:
