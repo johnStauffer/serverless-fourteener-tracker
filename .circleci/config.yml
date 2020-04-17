@@ -67,7 +67,7 @@ workflows:
           name: Deploy User API
           service_path: services/user-api
           stage_name: ${CIRCLE_BRANCH}
-          context: Development
+          context: Production
           filters:
             branches:
               only: master
@@ -76,7 +76,7 @@ workflows:
           name: Deploy Mountain API
           service_path: services/mountain-api
           stage_name: ${CIRCLE_BRANCH}
-          context: Development
+          context: Production
           filters:
             branches:
               only: master
