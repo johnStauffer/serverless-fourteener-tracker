@@ -45,18 +45,7 @@ workflows:
     jobs:
       - deploy-service:
           name: Deploy Users API
-          service_path: services/users-api
+          service_path: services/user-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
 
-      - deploy-service:
-          name: Deploy Posts API
-          service_path: services/posts-api
-          stage_name: ${CIRCLE_BRANCH}
-          context: Development
-
-      - deploy-service:
-          name: Deploy Cron Job
-          service_path: services/cron-job
-          stage_name: ${CIRCLE_BRANCH}
-          context: Development
