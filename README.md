@@ -1,1 +1,4 @@
-[![CircleCI](https://app.circleci.com/pipelines/github/johnStauffer/fourteener-tracker)](https://app.circleci.com/pipelines/github/johnStauffer/fourteener-tracker)
+[![CircleCI](https://circleci.com/gh/johnStauffer/fourteener-tracker.svg?style=svg)](https://circleci.com/gh/johnStauffer/fourteener-tracker)
+
+#fourteener-tracker
+

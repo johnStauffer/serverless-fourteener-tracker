@@ -162,7 +162,7 @@ workflows:
               ignore: /.*/
 
       - remove-service:
-          name: Remove Posts API
+          name: Remove Mountain API
           service_path: services/mountain-api
           stage_name: ${CIRCLE_TAG:9}
           context: Development
