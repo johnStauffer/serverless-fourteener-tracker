@@ -21,3 +21,11 @@ provider:
 environment:
   stage: ${self:custom.stage}
   resourcesStage: ${self:custom.resourcesStage}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get

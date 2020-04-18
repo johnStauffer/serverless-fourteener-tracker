@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+    "url": "https://github.com/johnStauffer/fourteener-tracker.git"
   },
   "devDependencies": {
     "serverless-bundle": "^1.2.5",
