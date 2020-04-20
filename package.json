@@ -17,5 +17,7 @@
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.12.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "serverless-pseudo-parameters": "^2.5.0"
+  }
 }
