@@ -16,7 +16,7 @@ jobs:
           name: Check Pull Request
           command: |
             if [[ ! -z "$CIRCLE_PULL_REQUEST" ]]; then
-              # parse pr# from URL https://github.com/fwang/sls-monorepo-with-circleci/pull/1
+              # parse pr# from URL
               PR_NUMBER=${CIRCLE_PULL_REQUEST##*/}
               echo "export PR_NUMBER=$PR_NUMBER" >> $BASH_ENV
               echo "Pull request #$PR_NUMBER"
@@ -113,7 +113,7 @@ workflows:
     jobs:
       # non-master branches deploys to stage named by the branch
       - deploy-service:
-          name: Deploy User API
+          name: Deploy Dev User API
           service_path: services/user-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
@@ -122,7 +122,7 @@ workflows:
               ignore: master
 
       - deploy-service:
-          name: Deploy Mountain API
+          name: Deploy Dev Mountain API
           service_path: services/mountain-api
           stage_name: ${CIRCLE_BRANCH}
           context: Development
@@ -132,7 +132,7 @@ workflows:
 
       # master branch deploys to the 'prod' stage
       - deploy-service:
-          name: Deploy User API
+          name: Deploy Prod User API
           service_path: services/user-api
           stage_name: ${CIRCLE_BRANCH}
           context: Production
@@ -141,7 +141,7 @@ workflows:
               only: master
 
       - deploy-service:
-          name: Deploy Mountain API
+          name: Deploy Prod Mountain API
           service_path: services/mountain-api
           stage_name: ${CIRCLE_BRANCH}
           context: Production
@@ -162,7 +162,7 @@ workflows:
               ignore: /.*/
 
       - remove-service:
-          name: Remove Posts API
+          name: Remove Mountain API
           service_path: services/mountain-api
           stage_name: ${CIRCLE_TAG:9}
           context: Development
