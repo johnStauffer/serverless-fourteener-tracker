@@ -23,9 +23,14 @@ environment:
   resourcesStage: ${self:custom.resourcesStage}
 
 functions:
-  hello:
-    handler: create.hello
+  grapql:
+    handler: handler.graphqlHandler
     events:
       - http:
-          path: hello
+          path: graphql
+          method: post
+          cors: true
+      - http:
+          path: graphql
           method: get
+          cors: true
