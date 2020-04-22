@@ -2,12 +2,20 @@
   "name": "user-api",
   "version": "1.0.0",
   "description": "user management microservice",
-  "main": "create.js",
+  "main": "handler.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "../../node_modules/.bin/serverless-bundle test"
+    "test": "../../node_modules/.bin/serverless-bundle test",
+    "offline": "serverless offline "
   },
-  "author": "john.stauffer.d@gmail.com"
+  "author": "john.stauffer.d@gmail.com",
+  "dependencies": {
+    "apollo-server-lambda": "^2.12.0",
+    "graphql": "latest"
+  },
+  "devDependencies": {
+    "serverless": "^1.67.3"
+  }
 }
