@@ -11,7 +11,6 @@ custom:
     prod: prod
     dev: dev
   resourcesStage: ${self:custom.resourcesStages.${self:custom.stage}, self:custom.resourcesStages.dev}
-  usersTableName: ${self:custom.common.stage}-users
 
 package:
   individually: true
