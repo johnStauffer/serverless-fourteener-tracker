@@ -3,7 +3,7 @@ service: user-api
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   stage: dev
   region: us-west-2
   tracing:
