@@ -5,7 +5,13 @@ plugins:
   - serverless-bundle
   - serverless-offline
 
-custom: ${file(../../serverless.common.yml):custom}
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  resourcesStages:
+    prod: prod
+    dev: dev
+  resourcesStage: ${self:custom.resourcesStages.${self:custom.stage}, self:custom.resourcesStages.dev}
+  usersTableName: ${self:custom.common.stage}-users
 
 package:
   individually: true
@@ -29,3 +35,10 @@ functions:
       - http:
           path: hello
           method: get
+
+lambdaPolicyXRay:
+  Effect: Allow
+  Action:
+    - xray:PutTraceSegments
+    - xray:PutTelemetryRecords
+  Resource: "*"

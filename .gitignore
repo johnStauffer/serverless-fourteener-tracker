@@ -44,6 +44,9 @@ Session.vim
 .webpack
 .serverless
 
+# Dynamodb
+.dynamodb
+
 # env
 env.yml
 .env

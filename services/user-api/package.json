@@ -8,14 +8,18 @@
   },
   "scripts": {
     "test": "../../node_modules/.bin/serverless-bundle test",
-    "offline": "serverless offline "
+    "offline": "serverless offline start"
   },
   "author": "john.stauffer.d@gmail.com",
   "dependencies": {
     "apollo-server-lambda": "^2.12.0",
-    "graphql": "latest"
+    "aws-sdk": "^2.661.0",
+    "graphql": "latest",
+    "serverless-dynamodb-client": "0.0.2"
   },
   "devDependencies": {
-    "serverless": "^1.67.3"
+    "serverless": "^1.67.3",
+    "serverless-bundle": "^1.4.0",
+    "serverless-offline": "^6.1.4"
   }
 }
