@@ -5,14 +5,19 @@ plugins:
   - serverless-bundle
   - serverless-offline
 
-custom: ${file(../../serverless.common.yml):custom}
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  resourcesStages:
+    prod: prod
+    dev: dev
+  resourcesStage: ${self:custom.resourcesStages.${self:custom.stage}, self:custom.resourcesStages.dev}
 
 package:
   individually: true
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   stage: dev
   region: us-west-2
   tracing:
@@ -29,3 +34,10 @@ functions:
       - http:
           path: hello
           method: get
+
+lambdaPolicyXRay:
+  Effect: Allow
+  Action:
+    - xray:PutTraceSegments
+    - xray:PutTelemetryRecords
+  Resource: "*"

@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "e78029c0-8505-11ea-bc55-0242ac130003",
+    "firstName": "laura",
+    "lastName": "reis",
+    "email": "laura.reis@gmail.com",
+    "city": "denver",
+    "state": "colorado"
+  },
+  {
+    "userId": "2b49236e-8506-11ea-bc55-0242ac130003",
+    "firstName": "stephen",
+    "lastName": "madison",
+    "email": "StephenYMadison@yahoo.com",
+    "city": "woodstock",
+    "state": "illinois"
+  },
+  {
+    "userId": "98fd955b-aa2d-4a95-9be2-bf8700b465cc",
+    "firstName": "caleb",
+    "lastName": "edington",
+    "email": "CalebLEdington@dayrep.com",
+    "city": "jamestown",
+    "state": "maryland"
+  }
+]

@@ -1,30 +1,62 @@
 app: fourteener-tracker
 service: user-api
 
-plugins:
-  - serverless-bundle
-  - serverless-offline
-
-custom: ${file(../../serverless.common.yml):custom}
-
-package:
-  individually: true
-
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   stage: dev
   region: us-west-2
   tracing:
     lambda: true
 
-environment:
-  stage: ${self:custom.stage}
-  resourcesStage: ${self:custom.resourcesStage}
+plugins:
+  - serverless-bundle
+  - serverless-dynamodb-local
+  - serverless-offline # Needs to be last in order for dynamo-local to work
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  resourcesStages:
+    prod: prod
+    dev: dev
+  resourcesStage: ${self:custom.resourcesStages.${self:custom.stage}, self:custom.resourcesStages.dev}
+  usersTableName:  ${self:custom.stage}-users
+
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      domain:
+        sources:
+          - table: ${self:custom.usersTableName}
+            sources: [./resources/offline/users-seed.json]
+
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:DescribeTable
+      - dynamodb:Query
+      - dynamodb:Scan
+      - dynamodb:GetItem
+      - dynamodb:PutItem
+      - dynamodb:UpdateItem
+      - dynamodb:DeleteItem
+    # Restrict our IAM role permissions to
+    # the specific table for the stage
+    Resource:
+      - "Fn::GetAtt": [ UsersTable, Arn ]
+
 
 functions:
   grapql:
     handler: handler.graphqlHandler
+    environment:
+      USERS_TABLE_NAME: ${self:custom.usersTableName}
     events:
       - http:
           path: graphql
@@ -34,3 +66,22 @@ functions:
           path: graphql
           method: get
           cors: true
+
+lambdaPolicyXRay:
+  Effect: Allow
+  Action:
+    - xray:PutTraceSegments
+    - xray:PutTelemetryRecords
+  Resource: "*"
+
+resources:
+  # DynamoDB
+  - ${file(./resources/dynamodb.yml)}
+
+
+package:
+  individually: true
+  exclude:
+    - node_modules/dynamodb-localhost/**
+    - node_modules/serverless-dynamodb-local/**
+    - node_modules/serverless-offline/**
