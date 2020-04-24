@@ -64,7 +64,7 @@ jobs:
 
   remove-service:
     docker:
-      - image: circleci/node:8.10
+      - image: circleci/node:12.9
     parameters:
       service_path:
         type: string
