@@ -31,11 +31,22 @@ const getUser = (userId) => {
         }
     };
     console.log(params);
-    return dynamoClient.scan(params, (err, data) => {
-        if (err) {
-            throw err;
-        } else return data;
-    });
+    // return dynamoClient.scan(params, (err, data) => {
+    //     if (err) {
+    //         throw err;
+    //     } else return data;
+    // });
+
+    return {
+        userId: '2b49236e-8506-11ea-bc55-0242ac130003',
+        firstName: 'John',
+        lastName: 'Stauffer',
+        email: 'john.stauffer.d@gmail.com',
+        location: {
+            city: 'Denver',
+            state: 'Colorado'
+        }
+    }
 };
 
 const resolvers = {
