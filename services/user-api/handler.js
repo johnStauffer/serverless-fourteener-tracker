@@ -1,7 +1,7 @@
 import {ApolloServer, gql} from 'apollo-server-lambda';
-import dynamodb from 'serverless-dynamodb-client';
+// import dynamodb from 'serverless-dynamodb-client';
 
-const dynamoClient = dynamodb.doc;
+// const dynamoClient = dynamodb.doc;
 
 const typeDefs = gql`
     type Query {
