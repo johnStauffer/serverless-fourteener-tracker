@@ -13,6 +13,7 @@ plugins:
   - serverless-bundle
   - serverless-dynamodb-local
   - serverless-offline # Needs to be last in order for dynamo-local to work
+  - serverless-dotenv-plugin
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -27,6 +28,7 @@ custom:
       - dev
     start:
       port: 8000
+      shareDb: true # Allows local db to hit from any region
       inMemory: true
       migrate: true
       seed: true
@@ -50,6 +52,7 @@ iamRoleStatements:
     # the specific table for the stage
     Resource:
       - "Fn::GetAtt": [ UsersTable, Arn ]
+
 
 
 functions:
