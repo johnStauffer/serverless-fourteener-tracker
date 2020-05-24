@@ -78,7 +78,7 @@ lambdaPolicyXRay:
   Resource: "*"
 
 resources:
-  # DynamoDB
+  # DynamoDB configuration
   - ${file(./resources/dynamodb.yml)}
 
 
