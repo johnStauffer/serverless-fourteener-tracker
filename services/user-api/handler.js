@@ -93,9 +93,10 @@ async function createUser(userInput) {
                     return putUser(normalizedUser);
                 }
             })
-            .then(() => getUser(userInput.userId).then(user => {
-                resolve(user);
-            }));
+            .then(() => getUser(userInput.userId)
+                .then(user => {
+                    resolve(user);
+                }));
     });
 }
 
@@ -114,18 +115,11 @@ const resolvers = {
     Query: {
         getUser: (parent, {id}, context, info) => {
             return getUser(id)
-                .then(user => {
-                    return user;
-                });
         },
     },
     Mutation: {
         createUser: (parent, {input}, context, info) => {
-            try {
-                return createUser(input)
-            } catch (e) {
-                throw new UserInputError(`User already registered with email: ${input.email}`);
-            }
+            return createUser(input)
         },
     }
 };
