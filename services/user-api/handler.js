@@ -1,4 +1,4 @@
-import {ApolloServer, UserInputError, gql} from 'apollo-server-lambda';
+import {ApolloServer, gql} from 'apollo-server-lambda';
 import dynamodb from 'serverless-dynamodb-client';
 import normalizeEmail from "normalize-email";
 
@@ -63,13 +63,13 @@ function getUserByEmail(email) {
                     '#email': 'email'
                 },
                 ExpressionAttributeValues: {
-                    ':email': email
+                    'S': email
                 },
                 Limit: 1
             }).promise().then((result, err) => {
                 if (err) reject(err);
                 resolve((result.Count > 0) ? result.Items[0] : null);
-            })
+            });
         }
     );
 }
@@ -88,7 +88,7 @@ async function createUser(userInput) {
         getUserByEmail(normalizedUser)
             .then(existingUser => {
                 if (existingUser != null) {
-                    reject(new Error(`User already exists for email: ${normalizedUser.email}`))
+                    reject(new Error(`User already exists for email: ${normalizedUser.email}`));
                 } else {
                     return putUser(normalizedUser);
                 }
@@ -114,12 +114,12 @@ const normalizeUser = userInput => {
 const resolvers = {
     Query: {
         getUser: (parent, {id}, context, info) => {
-            return getUser(id)
+            return getUser(id);
         },
     },
     Mutation: {
         createUser: (parent, {input}, context, info) => {
-            return createUser(input)
+            return createUser(input);
         },
     }
 };
