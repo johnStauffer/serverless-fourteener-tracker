@@ -57,7 +57,7 @@ iamRoleStatements:
 
 functions:
   grapql:
-    handler: handler.graphqlHandler
+    handler: index.graphqlHandler
     environment:
       USERS_TABLE_NAME: ${self:custom.usersTableName}
     events:
