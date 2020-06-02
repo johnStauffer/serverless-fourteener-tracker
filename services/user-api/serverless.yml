@@ -13,6 +13,7 @@ plugins:
   - serverless-bundle
   - serverless-dynamodb-local
   - serverless-offline # Needs to be last in order for dynamo-local to work
+  - serverless-dotenv-plugin
 
 custom:
   stage: ${opt:stage, self:provider.stage}
@@ -27,6 +28,7 @@ custom:
       - dev
     start:
       port: 8000
+      shareDb: true # Allows local db to hit from any region
       inMemory: true
       migrate: true
       seed: true
@@ -52,9 +54,10 @@ iamRoleStatements:
       - "Fn::GetAtt": [ UsersTable, Arn ]
 
 
+
 functions:
   grapql:
-    handler: handler.graphqlHandler
+    handler: index.graphqlHandler
     environment:
       USERS_TABLE_NAME: ${self:custom.usersTableName}
     events:
@@ -75,7 +78,7 @@ lambdaPolicyXRay:
   Resource: "*"
 
 resources:
-  # DynamoDB
+  # DynamoDB configuration
   - ${file(./resources/dynamodb.yml)}
 
 
