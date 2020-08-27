@@ -40,7 +40,7 @@ const getUser = (userId) => {
 
 const resolvers = {
     Query: {
-        hello: () => 'Hello world!',
+        hello: () => 'Hello world! This is a test',
         getUser: (parent, {id}, context, info) => {
             return getUser(id);
         }
