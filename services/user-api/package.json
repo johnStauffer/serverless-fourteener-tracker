@@ -13,7 +13,7 @@
   "author": "john.stauffer.d@gmail.com",
   "dependencies": {
     "apollo-server-lambda": "^2.12.0",
-    "aws-sdk": "^2.661.0",
+    "aws-sdk": "^2.814.0",
     "graphql": "latest",
     "normalize-email": "^1.1.1",
     "serverless-dynamodb-client": "0.0.2"
